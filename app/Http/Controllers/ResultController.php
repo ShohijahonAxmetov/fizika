@@ -11,8 +11,13 @@ class ResultController extends Controller
 
     public function run(Request $request)
     {
+    	$this
     	$q = $request->input('q');
 
-    	return $q;
+    	$reflectionFunc = new \ReflectionFunction($q);
+    	dd($reflectionFunc->getParameters());
+    	$result = $this->$q(10, 2);
+
+    	return $result;
     }
 }

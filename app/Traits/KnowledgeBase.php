@@ -4,7 +4,12 @@ namespace App\Traits;
 
 trait KnowledgeBase
 {
-	function speed(Length $s, Time $t)
+	function run($q)
+	{
+
+	}
+	
+	function Speed(Length $s, Time $t)
 	{
 		return $s->value / $t->value;
 	}

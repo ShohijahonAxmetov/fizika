@@ -25,6 +25,7 @@ trait KnowledgeBase
 				if (!in_array($item->uniqueDesignation, array_keys($data))) dd('o\'xshamadi!');
 			}
 
+			dd($qPMRequiredPMGroup->action);
 			$str = "15/3";
 			dd(eval('return '.$str.';'));
 		}

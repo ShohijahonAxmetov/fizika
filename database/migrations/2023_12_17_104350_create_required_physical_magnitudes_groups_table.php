@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('knowledge_bases', function (Blueprint $table) {
+        Schema::create('required_physical_magnitudes_groups', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->string('designation');
-            $table->text('action');
-            $table->string('uniqueDesignation')->unique();
+            $table->foreignId('physical_magnitude_id')->constrained(); // example 1
+            $table->text('required_physical_magnitude_ids'); // [2,3]
+            $table->text('action'); // Length / Time
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('knowledge_bases');
+        Schema::dropIfExists('required_physical_magnitudes_groups');
     }
 };

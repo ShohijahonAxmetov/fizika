@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UnitSeeder::class,
             PhysicalMagnitudeSeeder::class,
-            KnowledgeBaseSeeder::class,
+            RequiredPhysicalMagnitudeGroupSeeder::class,
         ]);
     }
 }

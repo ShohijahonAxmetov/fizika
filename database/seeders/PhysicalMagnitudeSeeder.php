@@ -62,7 +62,14 @@ class PhysicalMagnitudeSeeder extends Seeder
         		'name' => 'Сила света',
         		'designation' => ['I'],
         		'uniqueDesignation' => 'LuminousIntensity',
-        	]
+        	],
+            [
+                'id' => 8,
+                'unit_id' => null,
+                'name' => 'Скорость',
+                'designation' => ['V'],
+                'uniqueDesignation' => 'Speed',
+            ]
         ];
 
         foreach ($data as $item) {

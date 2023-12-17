@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('unit_id')->nullable()->costrained(); // единица измерения
             $table->text('name'); // example: Длина
             $table->string('designation'); // ["l","s"]
-            $table->string('uniqueDesignation')->unique();
+            $table->string('uniqueDesignation')->unique(); // Length
             $table->timestamps();
         });
     }

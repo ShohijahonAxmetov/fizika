@@ -2,38 +2,44 @@
 
 namespace App\Traits;
 
+use App\Models\PhysicalMagnitude;
+
 trait KnowledgeBase
 {
-	function run($q)
+	function handle($request)
 	{
+		$data = $request->except('q');
+		$q = $request->input('q');
 
+		$qPM = $this->getPhysicalMagnitude($q);
+
+		$qPMRequiredPMGroups = $qPM->requiredPhysicalMagnitudesGroup;
+
+		$temp = [];
+		foreach ($qPMRequiredPMGroups as $qPMRequiredPMGroup) {
+			foreach ($qPMRequiredPMGroup->required_physical_magnitude_ids as $requiredPM) {
+				$temp[] = PhysicalMagnitude::findOrFail($requiredPM);
+			}
+
+			foreach ($temp as $item) {
+				if (!in_array($item->uniqueDesignation, array_keys($data))) dd('o\'xshamadi!');
+			}
+
+			$str = "15/3";
+			dd(eval('return '.$str.';'));
+		}
+
+		dd($qPMRequiredPM);
 	}
-	
-	function Speed(Length $s, Time $t)
+
+	function getPhysicalMagnitude(string $uniqueDesignation)
 	{
-		return $s->value / $t->value;
+		return PhysicalMagnitude::where('uniqueDesignation', $uniqueDesignation)
+			->first();
 	}
 }
 
-class Length {
-	public $value = null;
-	public $physicalMagnitudeId = 1;
 
-	function __construct($value = null)
-	{
-		$this->value = $value;
-	} 
-}
-
-class Time {
-	public $value = null;
-	public $physicalMagnitudeId = 3;
-
-	function __construct($value = null)
-	{
-		$this->value = $value;
-	} 
-}
 
 function getNotEnoughInformationMessage()
 {

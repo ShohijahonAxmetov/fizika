@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Unit;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,16 +10,24 @@ class PhysicalMagnitude extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'unit_id',
+        'name',
+        'designation',
+        'uniqueDesignation',
+    ];
+
     protected $casts = [
     	'designation' => 'array'
     ];
 
-    // protected $appends = [
-    // 	'length'
-    // ];
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 
-    // public function length($type)
-    // {
-    // 	return 
-    // }
+    public function requiredPhysicalMagnitudesGroup()
+    {
+        return $this->hasMany(RequiredPhysicalMagnitudesGroup::class);
+    }
 }

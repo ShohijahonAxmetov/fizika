@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResolutionController;
 use App\Http\Controllers\ResultController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::get('/', function () {
 
 Route::get('resolution', [ResolutionController::class, 'run']);
 Route::get('result', [ResultController::class, 'run']);
+
+// Route::get('test', [Controller::class, 'test']);

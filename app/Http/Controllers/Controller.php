@@ -13,8 +13,41 @@ class Controller extends BaseController
 
     public function test()
     {
-    	$html2pdf = new Html2Pdf();
-		$html2pdf->writeHTML('<h1>HelloWorld</h1>This is my first test');
-		$html2pdf->output();
+    	$formula = ['t', 's', '/', 'V'];
+
+    	$values = ['V' => 27, 's' => 54];
+    	$q = 't';
+
+    	$result = [];
+    	if ($formula[2] == '/') {
+    		$qKey = array_search($q, $formula);
+
+    		if ($qKey == 0) $result = $formula;
+
+    		if ($qKey == 1) {
+    			$newFormula = [$q];
+	    		$newFormula[] = $formula[3];
+	    		$newFormula[] = '/';
+	    		$newFormula[] = $formula[0];
+
+	    		$result = $newFormula;
+    		}
+
+    		if ($qKey == 3) {
+    			$newFormula = [$q];
+	    		$newFormula[] = $formula[1];
+	    		$newFormula[] = '*';
+	    		$newFormula[] = $formula[0];
+
+	    		$result = $newFormula;
+    		}
+    	}
+    	
+    	return response($this->run($result, $values));
+    }
+
+    public function run($formula, $values)
+    {
+    	return eval('return '.$values[$formula[1]].$formula[2].$values[$formula[3]].';');
     }
 }

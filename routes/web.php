@@ -24,3 +24,5 @@ Route::get('resolution', [ResolutionController::class, 'run']);
 Route::get('result', [ResultController::class, 'run']);
 
 // Route::get('test', [Controller::class, 'test']);
+
+Route::get('test', [Controller::class, 'test']);

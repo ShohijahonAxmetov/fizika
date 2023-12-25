@@ -25,4 +25,5 @@ Route::get('result', [ResultController::class, 'run']);
 
 // Route::get('test', [Controller::class, 'test']);
 
-Route::get('test', [Controller::class, 'test']);
+Route::get('test', [Controller::class, 'test'])->name('test');
+Route::get('start', [Controller::class, 'start']);
